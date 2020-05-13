@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 559906353, guid: af8eb0ed45d7c604e8c9e41fe47d4a6f, type: 3}
+      propertyPath: hpPool
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5980961980478557962, guid: af8eb0ed45d7c604e8c9e41fe47d4a6f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5
@@ -1026,6 +1030,10 @@ PrefabInstance:
       propertyPath: attackBySecond
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2865652252487206756, guid: 2604edf805f4e754699ca0cfc313b557, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2865652252487206763, guid: 2604edf805f4e754699ca0cfc313b557, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.5
@@ -1087,6 +1095,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3894430870294441966, guid: d7efc32d59c88df4a8d859d36afa8340, type: 3}
+      propertyPath: hpPool
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5816291746934244094, guid: d7efc32d59c88df4a8d859d36afa8340, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0000015795231

@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Base : MonoBehaviour
+public class Base : MonoBehaviour, Buildings
 {
 
-    public int maxHp;
-    private int currentHp;
+    public int maxHp { get => hpPool; set => hpPool = value; }
+    [HideInInspector]
+    public int currentHp { get => hpCurrent; set => hpCurrent = value; }
+
+    public int hpPool;
+    public int hpCurrent;
+
     // Start is called before the first frame update
     void Start()
     {
-        currentHp = maxHp;
+        hpCurrent = hpPool;
     }
 
     // Update is called once per frame
@@ -18,6 +23,7 @@ public class Base : MonoBehaviour
     {
         if (currentHp <= 0)
         {
+            //Lose
             Destroy(gameObject);
         }
     }

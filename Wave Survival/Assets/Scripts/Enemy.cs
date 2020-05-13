@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,7 +22,7 @@ public class Enemy : MonoBehaviour
     {
         baseToTarget = target.GetComponent<Base>();
         agent.SetDestination(target.transform.position);
-        agent.stoppingDistance = range;
+        agent.stoppingDistance = range - (range / 10);
         agent.speed = speed;
     }
 
@@ -32,32 +33,46 @@ public class Enemy : MonoBehaviour
         Debug.Log(agent.velocity);
         Debug.Log(agent.hasPath);
         Debug.Log(agent.isPathStale);*/
-        Debug.Log(agent.pathStatus);
         if (!agent.pathPending)
         {
-            NavMeshHit hit;
-            agent.Raycast(target.transform.position, out hit);
-            Debug.Log(hit.distance);
-            if (agent.remainingDistance < range && agent.destination != null && !isAtacking)
-            {
-                isAtacking = true;
-                StartCoroutine(Attack());
-            }
-            if (hit.hit && agent.pathStatus == NavMeshPathStatus.PathPartial)
-            {
-                if (hit.distance <= agent.stoppingDistance)
-                {
 
-                    Debug.Log(hit.GetType());
+            Vector3 dir = target.transform.position - transform.position;
+            RaycastHit[] rayHit;
+            rayHit = Physics.RaycastAll(transform.position, dir);
+            Debug.DrawRay(transform.position, dir, Color.blue);
+            if (agent.pathStatus == NavMeshPathStatus.PathPartial)
+            {
+                List<RaycastHit> rayHits = rayHit.ToList();
+                rayHits.RemoveAt(0);
+                foreach (var hit in rayHits)
+                {
+                    if (hit.distance <= range && !isAtacking)
+                    {
+                        isAtacking = true;
+                        StartCoroutine(Attack(hit.collider.gameObject.GetComponent<Buildings>()));
+                    }
                 }
             }
-
+            if (agent.pathStatus == NavMeshPathStatus.PathComplete && !isAtacking && agent.velocity == new Vector3(0, 0, 0))
+            {
+                isAtacking = true;
+                StartCoroutine(Attack(target.GetComponent<Buildings>()));
+            }
         }
     }
-
-    IEnumerator Attack()
+    IEnumerator Attack(Buildings obj)
     {
-        baseToTarget.TakeDamage(damage);
-        yield return new WaitForSeconds(1f / attackBySecond);
+        while (obj.currentHp > 0)
+        {
+            obj.TakeDamage(damage);
+            yield return new WaitForSeconds(1f / attackBySecond);
+        }
+        isAtacking = false;
+        StopAllCoroutines();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
     }
 }
