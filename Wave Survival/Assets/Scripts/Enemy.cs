@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
                 rayHits.RemoveAt(0);
                 foreach (var hit in rayHits)
                 {
-                    if (hit.distance <= range && !isAtacking)
+                    if (hit.distance <= range && !isAtacking && agent.velocity == new Vector3(0, 0, 0))
                     {
                         isAtacking = true;
                         StartCoroutine(Attack(hit.collider.gameObject.GetComponent<Buildings>()));
