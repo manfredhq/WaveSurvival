@@ -15,12 +15,26 @@ public class GameManager : MonoBehaviour
     public Color nightSunColor;
     public Color daySunColor;
 
-    private GameObject playerGO;
+    public GameObject playerGO;
     private Time currentTime;
     public enum Time
     {
         Day,
         Night
+    }
+
+    public static GameManager instance;
+
+    //to handle the singleton
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("too many Game manager");
+            return;
+        }
+        instance = this;
+
     }
     // Start is called before the first frame update
     void Start()
