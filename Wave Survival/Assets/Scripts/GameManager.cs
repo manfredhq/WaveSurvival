@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject playerBase;
     public Light sun;
+    public MobSpawnerManager spawnerManager;
 
     public Color nightSunColor;
     public Color daySunColor;
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void NightStarting()
     {
+        spawnerManager.SpawnMobs(playerBase);
         sun.color = nightSunColor;
         currentTime = Time.Night;
     }

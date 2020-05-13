@@ -29,10 +29,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*Debug.Log(agent.remainingDistance);
-        Debug.Log(agent.velocity);
-        Debug.Log(agent.hasPath);
-        Debug.Log(agent.isPathStale);*/
         if (!agent.pathPending)
         {
 
@@ -53,7 +49,7 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
-            if (agent.pathStatus == NavMeshPathStatus.PathComplete && !isAtacking && agent.velocity == new Vector3(0, 0, 0))
+            if (agent.pathStatus == NavMeshPathStatus.PathComplete && !isAtacking && agent.velocity == new Vector3(0, 0, 0) && agent.remainingDistance <= range)
             {
                 isAtacking = true;
                 StartCoroutine(Attack(target.GetComponent<Buildings>()));
@@ -69,10 +65,5 @@ public class Enemy : MonoBehaviour
         }
         isAtacking = false;
         StopAllCoroutines();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
     }
 }
