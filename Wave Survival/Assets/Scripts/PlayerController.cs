@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     public NavMeshAgent agent;
 
     // Update is called once per frame
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
