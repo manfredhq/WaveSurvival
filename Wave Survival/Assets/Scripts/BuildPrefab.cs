@@ -66,11 +66,14 @@ public class BuildPrefab : MonoBehaviour
     {
         if (!isBuild)
         {
+            if (other.gameObject.name == "Ground") { return; }
             isBuildable = false;
             foreach (GameObject obj in objects)
             {
                 obj.GetComponent<Renderer>().material = cantBuild;
             }
+
+
         }
     }
 

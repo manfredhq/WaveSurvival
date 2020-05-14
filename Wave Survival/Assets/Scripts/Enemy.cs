@@ -7,6 +7,9 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
+    public int maxHp = 100;
+    private int currentHp;
+
     public GameObject target;
     public int damage = 10;
     public float speed = 10f;
@@ -20,6 +23,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHp = maxHp;
         baseToTarget = target.GetComponent<Base>();
         agent.SetDestination(target.transform.position);
         agent.stoppingDistance = range - (range / 10);
@@ -55,6 +59,11 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(Attack(target.GetComponent<Buildings>()));
             }
         }
+
+        if (currentHp <= 0)
+        {
+            Die();
+        }
     }
     IEnumerator Attack(Buildings obj)
     {
@@ -65,5 +74,17 @@ public class Enemy : MonoBehaviour
         }
         isAtacking = false;
         StopAllCoroutines();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+        Debug.Log(gameObject.name + ": " + currentHp + "/" + maxHp);
+    }
+
+    private void Die()
+    {
+        GameManager.instance.enemies.Remove(gameObject);
+        Destroy(gameObject);
     }
 }

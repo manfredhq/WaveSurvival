@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 
     public NavMeshSurface surface;
+    public List<GameObject> enemies = new List<GameObject>();
     public GameObject player;
     public GameObject playerBase;
     public Light sun;

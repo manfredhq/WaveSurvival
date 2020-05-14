@@ -27,6 +27,7 @@ public class MobSpawnerManager : MonoBehaviour
         {
             var temp = Instantiate(spawnPoint.mobPrefabs[0], spawnPoint.transform.position, Quaternion.identity);
             temp.GetComponent<Enemy>().target = target;
+            GameManager.instance.enemies.Add(temp);
         }
     }
 }
