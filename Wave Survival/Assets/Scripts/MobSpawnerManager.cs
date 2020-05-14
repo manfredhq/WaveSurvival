@@ -26,7 +26,7 @@ public class MobSpawnerManager : MonoBehaviour
         foreach (var spawnPoint in spawnPoints)
         {
             var temp = Instantiate(spawnPoint.mobPrefabs[0], spawnPoint.transform.position, Quaternion.identity);
-            temp.GetComponent<Enemy>().target = target;
+            temp.GetComponent<Enemy>().baseTarget = target;
             GameManager.instance.enemies.Add(temp);
         }
     }

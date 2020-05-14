@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turrets : MonoBehaviour
+public class Turrets : MonoBehaviour, Buildings
 {
     public int range = 10;
     public int damage = 10;
@@ -12,6 +12,17 @@ public class Turrets : MonoBehaviour
     private GameObject target;
     private bool isAtacking = false;
 
+    public int maxHp { get => hpPool; set => hpPool = value; }
+    [HideInInspector]
+    public int currentHp { get => hpCurrent; set => hpCurrent = value; }
+
+    public int hpPool = 100;
+    public int hpCurrent;
+
+    void Start()
+    {
+        hpCurrent = hpPool;
+    }
     private void Update()
     {
         //setting up the target
@@ -38,6 +49,10 @@ public class Turrets : MonoBehaviour
 
             StartCoroutine(Shoot());
         }
+        if (currentHp <= 0)
+        {
+            Die();
+        }
     }
 
     private IEnumerator Shoot()
@@ -54,5 +69,15 @@ public class Turrets : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+    }
+
+    public void Die()
+    {
+        GameManager.instance.buildings.Remove(gameObject);
+        Destroy(gameObject);
     }
 }

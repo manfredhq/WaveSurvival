@@ -8,4 +8,6 @@ public interface Buildings
     int currentHp { get; set; }
 
     void TakeDamage(int damage);
+
+    void Die();
 }

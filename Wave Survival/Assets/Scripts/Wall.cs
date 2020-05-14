@@ -22,12 +22,18 @@ public class Wall : MonoBehaviour, Buildings
     {
         if (currentHp <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
     public void TakeDamage(int damage)
     {
         currentHp -= damage;
+    }
+
+    public void Die()
+    {
+        GameManager.instance.buildings.Remove(gameObject);
+        Destroy(gameObject);
     }
 }

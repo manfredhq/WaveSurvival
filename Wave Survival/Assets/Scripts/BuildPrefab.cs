@@ -60,6 +60,7 @@ public class BuildPrefab : MonoBehaviour
             oldMat.RemoveAt(0);
         }
         isBuild = true;
+        GameManager.instance.buildings.Add(gameObject);
     }
 
     private void OnTriggerStay(Collider other)

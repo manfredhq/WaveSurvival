@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: -7277260699428458935}
   m_Layer: 0
   m_Name: Lumber
-  m_TagString: Untagged
+  m_TagString: ProdBuildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1516,6 +1516,8 @@ MonoBehaviour:
   prodType: 0
   prodAmount: 20
   timeProd: 0
+  hpPool: 150
+  hpCurrent: 0
 --- !u!54 &-7277260699428458935
 Rigidbody:
   m_ObjectHideFlags: 0

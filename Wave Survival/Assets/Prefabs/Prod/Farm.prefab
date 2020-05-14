@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 9103749289996054661}
   m_Layer: 0
   m_Name: Farm
-  m_TagString: Untagged
+  m_TagString: ProdBuildings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1067,3 +1067,5 @@ MonoBehaviour:
   prodType: 1
   prodAmount: 10
   timeProd: 0
+  hpPool: 150
+  hpCurrent: 0

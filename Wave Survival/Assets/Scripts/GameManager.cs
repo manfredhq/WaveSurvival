@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public NavMeshSurface surface;
     public List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> buildings = new List<GameObject>();
     public GameObject player;
     public GameObject playerBase;
     public Light sun;
@@ -134,10 +135,10 @@ public class GameManager : MonoBehaviour
                 stone += amount;
                 break;
         }
-        Debug.Log(stone);
-        Debug.Log(wood);
-        Debug.Log(food);
-        Debug.Log(gold);
+        Debug.Log("Stone : " + stone);
+        Debug.Log(" Wood : " + wood);
+        Debug.Log("Food : " + food);
+        Debug.Log("Gold : " + gold);
     }
 
     public bool BuyBuilding(ShopBlueprint blueprint)

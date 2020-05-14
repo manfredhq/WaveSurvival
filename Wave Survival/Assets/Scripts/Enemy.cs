@@ -10,13 +10,15 @@ public class Enemy : MonoBehaviour
     public int maxHp = 100;
     private int currentHp;
 
-    public GameObject target;
+    public GameObject baseTarget;
     public int damage = 10;
     public float speed = 10f;
     public float range;
     public NavMeshAgent agent;
 
     public float attackBySecond = 1f;
+    public int rangeDetectBuilding = 10;
+    public GameObject buildTarget;
 
     private bool isAtacking = false;
     private Base baseToTarget;
@@ -24,8 +26,16 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHp = maxHp;
-        baseToTarget = target.GetComponent<Base>();
-        agent.SetDestination(target.transform.position);
+        baseToTarget = baseTarget.GetComponent<Base>();
+        buildTarget = baseTarget;
+        foreach (GameObject obj in GameManager.instance.buildings)
+        {
+            if (Vector3.Distance(transform.position, buildTarget.transform.position) > Vector3.Distance(transform.position, obj.transform.position))
+            {
+                buildTarget = obj;
+            }
+        }
+        agent.SetDestination(buildTarget.transform.position);
         agent.stoppingDistance = range - (range / 10);
         agent.speed = speed;
     }
@@ -35,8 +45,7 @@ public class Enemy : MonoBehaviour
     {
         if (!agent.pathPending)
         {
-
-            Vector3 dir = target.transform.position - transform.position;
+            Vector3 dir = baseTarget.transform.position - transform.position;
             RaycastHit[] rayHit;
             rayHit = Physics.RaycastAll(transform.position, dir);
             Debug.DrawRay(transform.position, dir, Color.blue);
@@ -56,10 +65,21 @@ public class Enemy : MonoBehaviour
             if (agent.pathStatus == NavMeshPathStatus.PathComplete && !isAtacking && agent.velocity == new Vector3(0, 0, 0) && agent.remainingDistance <= range)
             {
                 isAtacking = true;
-                StartCoroutine(Attack(target.GetComponent<Buildings>()));
+                StartCoroutine(Attack(buildTarget.GetComponent<Buildings>()));
             }
         }
-
+        if (buildTarget == null)
+        {
+            buildTarget = baseTarget;
+            foreach (GameObject obj in GameManager.instance.buildings)
+            {
+                if (Vector3.Distance(transform.position, buildTarget.transform.position) > Vector3.Distance(transform.position, obj.transform.position))
+                {
+                    buildTarget = obj;
+                }
+            }
+            agent.SetDestination(buildTarget.transform.position);
+        }
         if (currentHp <= 0)
         {
             Die();
@@ -86,5 +106,11 @@ public class Enemy : MonoBehaviour
     {
         GameManager.instance.enemies.Remove(gameObject);
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rangeDetectBuilding);
     }
 }
