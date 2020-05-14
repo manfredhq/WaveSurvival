@@ -16,6 +16,21 @@ public class GameManager : MonoBehaviour
     public Color nightSunColor;
     public Color daySunColor;
 
+    #region currency
+    public enum currency
+    {
+        Wood,
+        Food,
+        Gold,
+        Stone
+    }
+    private int gold = 0;
+    private int food = 0;
+    private int wood = 0;
+    private int stone = 0;
+
+    #endregion
+
     public GameObject playerGO;
     public Vector3 playerGroundPosition;
     private Time currentTime;
@@ -95,5 +110,33 @@ public class GameManager : MonoBehaviour
     {
         playerGO.transform.position = playerBase.transform.position + Vector3.back;
         playerGO.SetActive(true);
+    }
+
+    public Time GetTime()
+    {
+        return currentTime;
+    }
+
+    public void ResourcesGain(currency type, int amount)
+    {
+        switch (type)
+        {
+            case currency.Wood:
+                wood += amount;
+                break;
+            case currency.Food:
+                food += amount;
+                break;
+            case currency.Gold:
+                gold += amount;
+                break;
+            case currency.Stone:
+                stone += amount;
+                break;
+        }
+        Debug.Log(stone);
+        Debug.Log(wood);
+        Debug.Log(food);
+        Debug.Log(gold);
     }
 }

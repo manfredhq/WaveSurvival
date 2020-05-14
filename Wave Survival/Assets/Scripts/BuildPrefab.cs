@@ -66,7 +66,7 @@ public class BuildPrefab : MonoBehaviour
     {
         if (!isBuild)
         {
-            if (other.gameObject.name == "Ground") { return; }
+            if (other.gameObject.name == "Ground" || other.gameObject.name == GameManager.instance.playerGO.name) { return; }
             isBuildable = false;
             foreach (GameObject obj in objects)
             {

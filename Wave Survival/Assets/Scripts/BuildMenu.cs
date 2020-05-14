@@ -6,6 +6,7 @@ public class BuildMenu : MonoBehaviour
 {
     public GameObject basicWall;
     public GameObject basicTurret;
+    public GameObject farm;
     public GameObject container;
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,17 @@ public class BuildMenu : MonoBehaviour
 
 
         var basicWallGO = Instantiate(basicTurret, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+        basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+        basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+    }
+
+    public void SelectFarm()
+    {
+        PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
+        player.agent.SetDestination(player.gameObject.transform.position);
+
+
+        var basicWallGO = Instantiate(farm, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
         basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
         basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
     }
