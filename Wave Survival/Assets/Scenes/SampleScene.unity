@@ -342,10 +342,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 229699324}
+  - component: {fileID: 229699328}
   - component: {fileID: 229699326}
   - component: {fileID: 229699325}
   - component: {fileID: 229699327}
-  - component: {fileID: 229699328}
   m_Layer: 5
   m_Name: BuildMenu
   m_TagString: Untagged
@@ -449,9 +449,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872e99031b62c6f468c7c29566a2a330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicWall: {fileID: 5816291746934244095, guid: d7efc32d59c88df4a8d859d36afa8340, type: 3}
-  basicTurret: {fileID: 7899765080009966743, guid: 58386a911e482d94aa409660aec92e05, type: 3}
-  farm: {fileID: 234984899741513438, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
+  basicWall:
+    costs:
+    - currencyType: 0
+      cost: 20
+    prefab: {fileID: 5816291746934244095, guid: d7efc32d59c88df4a8d859d36afa8340, type: 3}
+  basicTurret:
+    costs:
+    - currencyType: 0
+      cost: 25
+    - currencyType: 1
+      cost: 10
+    prefab: {fileID: 7899765080009966743, guid: 58386a911e482d94aa409660aec92e05, type: 3}
+  farm:
+    costs:
+    - currencyType: 0
+      cost: 15
+    prefab: {fileID: 234984899741513438, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
   container: {fileID: 1991119012}
 --- !u!1 &292749835
 GameObject:
@@ -4712,68 +4726,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0067e7134a9a8854fa08ee2bef9f17fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &5247419002760605505
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 234984899741513438, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_Name
-      value: Farm
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 234984899741513439, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9103749289996054661, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: prodType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9103749289996054661, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}
-      propertyPath: prodAmount
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b587aac6095d4744ea2a3fe433e317a3, type: 3}

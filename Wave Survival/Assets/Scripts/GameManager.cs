@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
         Gold,
         Stone
     }
-    private int gold = 0;
-    private int food = 0;
-    private int wood = 0;
-    private int stone = 0;
+    private int gold = 100;
+    private int food = 100;
+    private int wood = 100;
+    private int stone = 100;
 
     #endregion
 
@@ -138,5 +138,61 @@ public class GameManager : MonoBehaviour
         Debug.Log(wood);
         Debug.Log(food);
         Debug.Log(gold);
+    }
+
+    public bool BuyBuilding(ShopBlueprint blueprint)
+    {
+        foreach (CostBlueprint cost in blueprint.costs)
+        {
+            if (!CheckEnoughCurrency(cost.currencyType, cost.cost))
+            {
+                return false;
+            }
+        }
+        foreach (CostBlueprint cost in blueprint.costs)
+        {
+            RemoveCurrency(cost.currencyType, cost.cost);
+        }
+        return true;
+
+    }
+
+    public bool CheckEnoughCurrency(currency type, int amount)
+    {
+        switch (type)
+        {
+            case currency.Wood:
+                if (amount > wood) { return false; }
+                break;
+            case currency.Food:
+                if (amount > food) { return false; }
+                break;
+            case currency.Gold:
+                if (amount > gold) { return false; }
+                break;
+            case currency.Stone:
+                if (amount > stone) { return false; }
+                break;
+        }
+        return true;
+    }
+
+    public void RemoveCurrency(currency type, int amount)
+    {
+        switch (type)
+        {
+            case currency.Wood:
+                wood -= amount;
+                break;
+            case currency.Food:
+                food -= amount;
+                break;
+            case currency.Gold:
+                gold -= amount;
+                break;
+            case currency.Stone:
+                stone -= amount;
+                break;
+        }
     }
 }

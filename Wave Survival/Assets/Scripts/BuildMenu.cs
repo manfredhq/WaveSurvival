@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BuildMenu : MonoBehaviour
 {
-    public GameObject basicWall;
-    public GameObject basicTurret;
-    public GameObject farm;
+    public ShopBlueprint basicWall;
+    public ShopBlueprint basicTurret;
+    public ShopBlueprint farm;
     public GameObject container;
     // Start is called before the first frame update
     void Start()
@@ -25,10 +25,12 @@ public class BuildMenu : MonoBehaviour
         PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
         player.agent.SetDestination(player.gameObject.transform.position);
 
-
-        var basicWallGO = Instantiate(basicWall, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
-        basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
-        basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+        if (GameManager.instance.BuyBuilding(basicWall))
+        {
+            var basicWallGO = Instantiate(basicWall.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+            basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+            basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+        }
     }
 
     public void SelectBasicTurret()
@@ -36,20 +38,40 @@ public class BuildMenu : MonoBehaviour
         PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
         player.agent.SetDestination(player.gameObject.transform.position);
 
+        if (GameManager.instance.BuyBuilding(basicTurret))
+        {
+            var basicWallGO = Instantiate(basicTurret.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+            basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+            basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
 
-        var basicWallGO = Instantiate(basicTurret, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
-        basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
-        basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+        }
     }
 
     public void SelectFarm()
     {
+
         PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
         player.agent.SetDestination(player.gameObject.transform.position);
 
+        if (GameManager.instance.BuyBuilding(farm))
+        {
 
-        var basicWallGO = Instantiate(farm, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
-        basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
-        basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+            var basicWallGO = Instantiate(farm.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+            basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+            basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+        }
     }
+}
+
+[System.Serializable]
+public class ShopBlueprint
+{
+    public CostBlueprint[] costs;
+    public GameObject prefab;
+}
+[System.Serializable]
+public class CostBlueprint
+{
+    public GameManager.currency currencyType;
+    public int cost;
 }
