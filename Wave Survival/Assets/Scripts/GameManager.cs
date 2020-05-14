@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Color daySunColor;
 
     public GameObject playerGO;
+    public Vector3 playerGroundPosition;
     private Time currentTime;
     public enum Time
     {
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerGO = Instantiate(player, playerBase.transform.position + Vector3.back, Quaternion.identity);
+        playerGroundPosition = new Vector3(playerGO.transform.position.x, 0, playerGO.transform.position.z);
         DayStarting();
         CalculateMesh();
     }
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerGroundPosition = new Vector3(playerGO.transform.position.x, 0, playerGO.transform.position.z);
 
     }
 

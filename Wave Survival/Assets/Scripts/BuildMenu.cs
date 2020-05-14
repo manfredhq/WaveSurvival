@@ -22,6 +22,10 @@ public class BuildMenu : MonoBehaviour
     {
         PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
         player.agent.SetDestination(player.gameObject.transform.position);
-        Instantiate(basicWall, GameManager.instance.playerGO.transform.position + Vector3.down, Quaternion.identity, container.transform);
+
+
+        var basicWallGO = Instantiate(basicWall, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+        basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+        basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
     }
 }
