@@ -7,6 +7,7 @@ public class BuildMenu : MonoBehaviour
     public ShopBlueprint basicWall;
     public ShopBlueprint basicTurret;
     public ShopBlueprint farm;
+    public ShopBlueprint lumber;
     public GameObject container;
     // Start is called before the first frame update
     void Start()
@@ -57,6 +58,21 @@ public class BuildMenu : MonoBehaviour
         {
 
             var basicWallGO = Instantiate(farm.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+            basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+            basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+        }
+    }
+
+    public void SelectLumber()
+    {
+
+        PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
+        player.agent.SetDestination(player.gameObject.transform.position);
+
+        if (GameManager.instance.BuyBuilding(lumber))
+        {
+
+            var basicWallGO = Instantiate(lumber.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
             basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
             basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
         }
