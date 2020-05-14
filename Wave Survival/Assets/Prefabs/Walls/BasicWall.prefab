@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5816291746934244094}
   - component: {fileID: 8209747978508242589}
+  - component: {fileID: 2920889133955630313}
   m_Layer: 0
   m_Name: BasicWall
   m_TagString: Untagged
@@ -54,10 +55,29 @@ MonoBehaviour:
   - {fileID: 5816291746975311253}
   - {fileID: 5816291747814246661}
   - {fileID: 5816291747534122411}
+  canBuild: {fileID: 2100000, guid: ddc3f6c823c02374697c7ca24d349e13, type: 2}
+  cantBuild: {fileID: 2100000, guid: 4668fcd92e5f62441b9f2998740d6d1c, type: 2}
   player: {fileID: 0}
+  offset: 2
   isBuild: 0
   isBuildingMode: 1
   isBuildable: 1
+--- !u!54 &2920889133955630313
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816291746934244095}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5816291746975311254
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ce893b6dd12af6f41b28920a0a79776c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,7 +267,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ce893b6dd12af6f41b28920a0a79776c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -374,7 +394,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ce893b6dd12af6f41b28920a0a79776c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
