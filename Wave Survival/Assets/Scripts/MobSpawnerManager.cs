@@ -21,13 +21,11 @@ public class MobSpawnerManager : MonoBehaviour
 
     }
 
-    public void SpawnMobs(GameObject target)
+    public void SpawnMobs()
     {
         foreach (var spawnPoint in spawnPoints)
         {
-            var temp = Instantiate(spawnPoint.mobPrefabs[0], spawnPoint.transform.position, Quaternion.identity);
-            temp.GetComponent<Enemy>().baseTarget = target;
-            GameManager.instance.enemies.Add(temp);
+            StartCoroutine(spawnPoint.SpawnEnemies(3, mobPrefabs[Random.Range(0, mobPrefabs.Count)], 2));
         }
     }
 }

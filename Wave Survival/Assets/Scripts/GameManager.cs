@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     public void NightStarting()
     {
-        spawnerManager.SpawnMobs(playerBase);
+        spawnerManager.SpawnMobs();
         sun.color = nightSunColor;
         currentTime = Time.Night;
     }
