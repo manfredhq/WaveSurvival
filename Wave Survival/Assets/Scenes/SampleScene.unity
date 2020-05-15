@@ -388,6 +388,8 @@ MonoBehaviour:
       cost: 25
     - currencyType: 1
       cost: 10
+    - currencyType: 4
+      cost: 1
     prefab: {fileID: 7899765080009966743, guid: 58386a911e482d94aa409660aec92e05, type: 3}
   farm:
     costs:
@@ -398,6 +400,8 @@ MonoBehaviour:
     costs:
     - currencyType: 2
       cost: 10
+    - currencyType: 4
+      cost: 1
     prefab: {fileID: 6047589903816189741, guid: aa338643db968374e9f09ee0d0b04ff8, type: 3}
   container: {fileID: 1991119012}
 --- !u!1 &292749835
@@ -1347,10 +1351,10 @@ Transform:
   - {fileID: 719403457}
   - {fileID: 1360690979}
   - {fileID: 687538750}
-  - {fileID: 1342177904}
-  - {fileID: 1857255099}
   - {fileID: 1469150368}
+  - {fileID: 1342177904}
   - {fileID: 839702884}
+  - {fileID: 1857255099}
   - {fileID: 1281609749}
   - {fileID: 1826385861}
   - {fileID: 535119630}

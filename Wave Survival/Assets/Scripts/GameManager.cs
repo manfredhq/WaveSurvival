@@ -23,12 +23,15 @@ public class GameManager : MonoBehaviour
         Wood,
         Food,
         Gold,
-        Stone
+        Stone,
+        Pop
     }
     private int gold = 100;
     private int food = 100;
     private int wood = 100;
     private int stone = 100;
+    private int maxPop = 5;
+    private int currentPop;
 
     #endregion
 
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentPop = maxPop;
         playerGO = Instantiate(player, playerBase.transform.position + Vector3.back, Quaternion.identity);
         playerGroundPosition = new Vector3(playerGO.transform.position.x, 0, playerGO.transform.position.z);
         DayStarting();
@@ -134,11 +138,16 @@ public class GameManager : MonoBehaviour
             case currency.Stone:
                 stone += amount;
                 break;
+            case currency.Pop:
+                currentPop += amount;
+                maxPop += amount;
+                break;
         }
         Debug.Log("Stone : " + stone);
         Debug.Log(" Wood : " + wood);
         Debug.Log("Food : " + food);
         Debug.Log("Gold : " + gold);
+        Debug.Log("Pop : " + currentPop + "/" + maxPop);
     }
 
     public bool BuyBuilding(ShopBlueprint blueprint)
@@ -174,6 +183,9 @@ public class GameManager : MonoBehaviour
             case currency.Stone:
                 if (amount > stone) { return false; }
                 break;
+            case currency.Pop:
+                if (amount > currentPop) { return false; }
+                break;
         }
         return true;
     }
@@ -193,6 +205,9 @@ public class GameManager : MonoBehaviour
                 break;
             case currency.Stone:
                 stone -= amount;
+                break;
+            case currency.Pop:
+                currentPop -= amount;
                 break;
         }
     }

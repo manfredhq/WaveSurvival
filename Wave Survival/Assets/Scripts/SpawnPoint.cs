@@ -23,7 +23,6 @@ public class SpawnPoint : MonoBehaviour
     {
         while (number > 0)
         {
-            Debug.Log("test");
             Vector3 offset = new Vector3(Random.Range(-rangeToSpawn, rangeToSpawn), 0, Random.Range(-rangeToSpawn, rangeToSpawn));
             var temp = Instantiate(enemy, transform.position + offset, Quaternion.identity);
             temp.GetComponent<Enemy>().baseTarget = GameManager.instance.playerBase;

@@ -1029,6 +1029,9 @@ MonoBehaviour:
   - {fileID: 2063319831}
   - {fileID: 364465374}
   - {fileID: 372861476}
+  earnings:
+  - currencyType: 4
+    amount: 2
   canBuild: {fileID: 2100000, guid: ddc3f6c823c02374697c7ca24d349e13, type: 2}
   cantBuild: {fileID: 2100000, guid: 4668fcd92e5f62441b9f2998740d6d1c, type: 2}
   player: {fileID: 0}

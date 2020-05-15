@@ -8,6 +8,7 @@ public class BuildPrefab : MonoBehaviour
 {
     public List<GameObject> objects = new List<GameObject>();
     public List<Collider> colliders = new List<Collider>();
+    public List<BuildEarnings> earnings = new List<BuildEarnings>();
     public Material canBuild;
     public Material cantBuild;
     public GameObject player;
@@ -59,6 +60,10 @@ public class BuildPrefab : MonoBehaviour
             obj.GetComponent<NavMeshObstacle>().enabled = true;
             oldMat.RemoveAt(0);
         }
+        foreach (var earn in earnings)
+        {
+            GameManager.instance.ResourcesGain(earn.currencyType, earn.amount);
+        }
         isBuild = true;
         GameManager.instance.buildings.Add(gameObject);
     }
@@ -89,4 +94,11 @@ public class BuildPrefab : MonoBehaviour
             }
         }
     }
+}
+
+[System.Serializable]
+public class BuildEarnings
+{
+    public GameManager.currency currencyType;
+    public int amount;
 }
