@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,11 @@ public class GameManager : MonoBehaviour
     public NavMeshSurface surface;
     public List<GameObject> enemies = new List<GameObject>();
     public List<GameObject> buildings = new List<GameObject>();
+    public TMP_Text goldText;
+    public TMP_Text popText;
+    public TMP_Text stoneText;
+    public TMP_Text woodText;
+    public TMP_Text foodText;
     public GameObject player;
     public GameObject playerBase;
     public Light sun;
@@ -34,6 +40,8 @@ public class GameManager : MonoBehaviour
     private int currentPop;
 
     #endregion
+
+    public GameObject currentBuildPrefab;
 
     public GameObject playerGO;
     public Vector3 playerGroundPosition;
@@ -71,7 +79,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         playerGroundPosition = new Vector3(playerGO.transform.position.x, 0, playerGO.transform.position.z);
-
+        stoneText.text = stone.ToString();
+        goldText.text = gold.ToString();
+        popText.text = currentPop.ToString();
+        woodText.text = wood.ToString();
+        foodText.text = food.ToString();
     }
 
     public void ChangeTime()

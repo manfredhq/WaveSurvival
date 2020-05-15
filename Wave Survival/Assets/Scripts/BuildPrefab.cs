@@ -64,6 +64,7 @@ public class BuildPrefab : MonoBehaviour
         {
             GameManager.instance.ResourcesGain(earn.currencyType, earn.amount);
         }
+        GameManager.instance.currentBuildPrefab = null;
         isBuild = true;
         GameManager.instance.buildings.Add(gameObject);
     }

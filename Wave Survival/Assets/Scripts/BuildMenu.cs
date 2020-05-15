@@ -25,12 +25,15 @@ public class BuildMenu : MonoBehaviour
     {
         PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
         player.agent.SetDestination(player.gameObject.transform.position);
-
-        if (GameManager.instance.BuyBuilding(basicWall))
+        if (GameManager.instance.currentBuildPrefab == null)
         {
-            var basicWallGO = Instantiate(basicWall.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
-            basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
-            basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+            if (GameManager.instance.BuyBuilding(basicWall))
+            {
+                var basicWallGO = Instantiate(basicWall.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+                basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+                basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+                GameManager.instance.currentBuildPrefab = basicWallGO;
+            }
         }
     }
 
@@ -38,13 +41,16 @@ public class BuildMenu : MonoBehaviour
     {
         PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
         player.agent.SetDestination(player.gameObject.transform.position);
-
-        if (GameManager.instance.BuyBuilding(basicTurret))
+        if (GameManager.instance.currentBuildPrefab == null)
         {
-            var basicWallGO = Instantiate(basicTurret.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
-            basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
-            basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+            if (GameManager.instance.BuyBuilding(basicTurret))
+            {
+                var basicWallGO = Instantiate(basicTurret.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+                basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+                basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+                GameManager.instance.currentBuildPrefab = basicWallGO;
 
+            }
         }
     }
 
@@ -53,13 +59,16 @@ public class BuildMenu : MonoBehaviour
 
         PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
         player.agent.SetDestination(player.gameObject.transform.position);
-
-        if (GameManager.instance.BuyBuilding(farm))
+        if (GameManager.instance.currentBuildPrefab == null)
         {
+            if (GameManager.instance.BuyBuilding(farm))
+            {
 
-            var basicWallGO = Instantiate(farm.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
-            basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
-            basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+                var basicWallGO = Instantiate(farm.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+                basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+                basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+                GameManager.instance.currentBuildPrefab = basicWallGO;
+            }
         }
     }
 
@@ -68,13 +77,16 @@ public class BuildMenu : MonoBehaviour
 
         PlayerController player = GameManager.instance.playerGO.GetComponent<PlayerController>();
         player.agent.SetDestination(player.gameObject.transform.position);
-
-        if (GameManager.instance.BuyBuilding(lumber))
+        if (GameManager.instance.currentBuildPrefab == null)
         {
+            if (GameManager.instance.BuyBuilding(lumber))
+            {
 
-            var basicWallGO = Instantiate(lumber.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
-            basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
-            basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+                var basicWallGO = Instantiate(lumber.prefab, GameManager.instance.playerGroundPosition, player.gameObject.transform.rotation, container.transform);
+                basicWallGO.GetComponent<BuildPrefab>().player = player.gameObject;
+                basicWallGO.GetComponent<BuildPrefab>().isBuildingMode = true;
+                GameManager.instance.currentBuildPrefab = basicWallGO;
+            }
         }
     }
 }
