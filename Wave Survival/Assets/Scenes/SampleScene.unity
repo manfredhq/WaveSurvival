@@ -6068,8 +6068,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogs:
-  - key: Play
-  - key: Quit
+  - key: Tutorial_dialog_1
+  - key: Tutorial_dialog_2
+  - key: Tutorial_dialog_3
+  - key: Tutorial_dialog_4
+  - key: Tutorial_dialog_5
+  - key: Tutorial_dialog_6
+  - key: Tutorial_dialog_7
+  - key: Tutorial_dialog_8
+  - key: Tutorial_dialog_9
+  - key: Tutorial_dialog_10
+  - key: Tutorial_dialog_11
+  - key: Tutorial_dialog_12
+  - key: Tutorial_dialog_13
+  - key: Tutorial_dialog_14
+  - key: Tutorial_dialog_15
+  - key: Tutorial_dialog_16
+  - key: Tutorial_dialog_17
+  - key: Tutorial_dialog_18
   dialogText: {fileID: 969101547}
   dialogCanvas: {fileID: 339778791}
 --- !u!1 &2144905914
