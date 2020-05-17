@@ -650,7 +650,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 236495486}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2130279196}
+        m_TargetAssemblyTypeName: DialogManager, Assembly-CSharp
+        m_MethodName: Button0Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &236495486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3266,7 +3278,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 845141826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2130279196}
+        m_TargetAssemblyTypeName: DialogManager, Assembly-CSharp
+        m_MethodName: Button2Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &845141826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4811,7 +4835,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1294115213}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2130279196}
+        m_TargetAssemblyTypeName: DialogManager, Assembly-CSharp
+        m_MethodName: Button1Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1294115213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7037,8 +7073,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogs:
-  - key: Q1
-    isQuest: 1
+  - key: Tutorial_dialog_1
+    isQuest: 0
     answersKeys:
     - A1_Q1
     - A2_Q1
@@ -7095,6 +7131,7 @@ MonoBehaviour:
     answersKeys: []
   dialogText: {fileID: 969101547}
   dialogCanvas: {fileID: 339778791}
+  AnswerPanel: {fileID: 128275946}
   answerText:
   - {fileID: 1748303475}
   - {fileID: 1282863828}

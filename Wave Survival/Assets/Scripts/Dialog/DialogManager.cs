@@ -10,6 +10,7 @@ public class DialogManager : MonoBehaviour
     public List<DialogOptions> dialogs = new List<DialogOptions>();
     public TextLocalizerUI dialogText;
     public GameObject dialogCanvas;
+    public GameObject AnswerPanel;
 
     public List<TextLocalizerUI> answerText = new List<TextLocalizerUI>();
 
@@ -40,6 +41,7 @@ public class DialogManager : MonoBehaviour
         dialogText.key = dialogs[dialogIndex].key;
         if (dialogs[dialogIndex].isQuest)
         {
+            AnswerPanel.SetActive(true);
             for (int i = 0; i < dialogs[dialogIndex].answersKeys.Count; i++)
             {
                 answerText[i].key = dialogs[dialogIndex].answersKeys[i];
@@ -49,8 +51,15 @@ public class DialogManager : MonoBehaviour
             for (int i = dialogs[dialogIndex].answersKeys.Count; i < answerText.Count; i++)
             {
                 answerText[i].gameObject.GetComponentInParent<Button>().gameObject.SetActive(false);
-                //answerText[i].gameObject.SetActive(false);
             }
+        }
+        else
+        {
+            for (int i = 0; i < dialogs[dialogIndex - 1].answersKeys.Count; i++)
+            {
+                answerText[i].gameObject.GetComponentInParent<Button>().gameObject.SetActive(false);
+            }
+            AnswerPanel.SetActive(false);
         }
         dialogText.Refresh(dialogs[dialogIndex].isQuest);
     }
@@ -66,15 +75,25 @@ public class DialogManager : MonoBehaviour
         dialogText.key = dialogs[dialogIndex].key;
         if (dialogs[dialogIndex].isQuest)
         {
+            AnswerPanel.SetActive(true);
             for (int i = 0; i < dialogs[dialogIndex].answersKeys.Count; i++)
             {
                 answerText[i].key = dialogs[dialogIndex].answersKeys[i];
-                answerText[i].gameObject.SetActive(true);
+                answerText[i].isQuest = true;
+                answerText[i].gameObject.GetComponentInParent<Button>().gameObject.SetActive(true);
             }
             for (int i = dialogs[dialogIndex].answersKeys.Count; i < answerText.Count; i++)
             {
                 answerText[i].gameObject.SetActive(false);
             }
+        }
+        else
+        {
+            for (int i = 0; i < dialogs[dialogIndex - 1].answersKeys.Count; i++)
+            {
+                answerText[i].gameObject.GetComponentInParent<Button>().gameObject.SetActive(false);
+            }
+            AnswerPanel.SetActive(false);
         }
         dialogText.Refresh(dialogs[dialogIndex].isQuest);
         Debug.Log("next dialog");
@@ -95,6 +114,44 @@ public class DialogManager : MonoBehaviour
     {
         dialogCanvas.SetActive(!dialogCanvas.activeSelf);
     }
+
+
+    #region questAnswer
+
+    public void Button0Clicked()
+    {
+        QuestAnswer(dialogs[dialogIndex].key, 0);
+    }
+    public void Button1Clicked()
+    {
+        QuestAnswer(dialogs[dialogIndex].key, 1);
+    }
+    public void Button2Clicked()
+    {
+        QuestAnswer(dialogs[dialogIndex].key, 2);
+    }
+    public void QuestAnswer(string key, int answerIndex)
+    {
+        if (key == "Q1")
+        {
+            AnswerQ1(answerIndex);
+        }
+
+        NextDialog();
+    }
+
+    private void AnswerQ1(int answerIndex)
+    {
+        if (answerIndex == 0)
+        {
+            GameManager.instance.ResourcesGain(GameManager.currency.Wood, 10);
+        }
+        else if (answerIndex == 1)
+        {
+            GameManager.instance.RemoveCurrency(GameManager.currency.Wood, 10);
+        }
+    }
+    #endregion
 }
 
 [System.Serializable]
