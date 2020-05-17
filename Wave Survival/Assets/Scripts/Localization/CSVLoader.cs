@@ -9,6 +9,7 @@ using UnityEngine;
 public class CSVLoader
 {
     private TextAsset csvFile;
+    private TextAsset csvFileQuest;
     private char lineSeperator = '\n';
     private char surround = '"';
     private string[] fieldSeperator = { "\",\"" };
@@ -16,6 +17,7 @@ public class CSVLoader
     public void LoadCSV()
     {
         csvFile = Resources.Load<TextAsset>("localization");
+        csvFileQuest = Resources.Load<TextAsset>("questLoc");
     }
 
     public Dictionary<string, string> GetDictionaryValues(string attributeID)
@@ -23,6 +25,58 @@ public class CSVLoader
         Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
         string[] lines = csvFile.text.Split(lineSeperator);
+
+        int attributeIndex = -1;
+
+        string[] headers = lines[0].Split(fieldSeperator, StringSplitOptions.None);
+
+        for (int i = 0; i < headers.Length; i++)
+        {
+            if (headers[i].Contains(attributeID))
+            {
+                attributeIndex = i;
+                break;
+            }
+        }
+
+        Regex CSVParser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            string line = lines[i];
+
+            string[] fields = CSVParser.Split(line);
+
+            for (int i2 = 0; i2 < fields.Length; i2++)
+            {
+                fields[i2] = fields[i2].TrimStart(' ', surround);
+                fields[i2] = fields[i2].Replace(surround.ToString(), "");
+            }
+
+            if (fields.Length > attributeIndex)
+            {
+                var key = fields[0];
+
+                if (dictionary.ContainsKey(key))
+                {
+                    continue;
+                }
+
+                var value = fields[attributeIndex];
+
+                dictionary.Add(key, value);
+            }
+        }
+
+        return dictionary;
+
+    }
+
+    public Dictionary<string, string> GetQuestDictionaryValues(string attributeID)
+    {
+        Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+        string[] lines = csvFileQuest.text.Split(lineSeperator);
 
         int attributeIndex = -1;
 

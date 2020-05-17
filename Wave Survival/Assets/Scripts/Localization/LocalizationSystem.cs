@@ -14,6 +14,8 @@ public class LocalizationSystem
 
     private static Dictionary<string, string> localizedEN;
     private static Dictionary<string, string> localizedFR;
+    private static Dictionary<string, string> localizedENQuest;
+    private static Dictionary<string, string> localizedFRQuest;
 
     public static bool isInit;
 
@@ -29,13 +31,15 @@ public class LocalizationSystem
         csvLoader.LoadCSV();
 
         localizedEN = csvLoader.GetDictionaryValues("en");
+        localizedENQuest = csvLoader.GetQuestDictionaryValues("en");
         localizedFR = csvLoader.GetDictionaryValues("fr");
+        localizedFRQuest = csvLoader.GetQuestDictionaryValues("fr");
 
 
         isInit = true;
     }
 
-    public static string GetLocalizedValue(string key)
+    public static string GetLocalizedValue(string key, bool isQuest = false)
     {
         if (!isInit)
         {
@@ -45,11 +49,18 @@ public class LocalizationSystem
 
         switch (PlayerPrefs.GetString("language", "en"))
         {
+
             case "en":
-                localizedEN.TryGetValue(key, out value);
+                if (!isQuest)
+                    localizedEN.TryGetValue(key, out value);
+                else
+                    localizedENQuest.TryGetValue(key, out value);
                 break;
             case "fr":
-                localizedFR.TryGetValue(key, out value);
+                if (!isQuest)
+                    localizedFR.TryGetValue(key, out value);
+                else
+                    localizedFRQuest.TryGetValue(key, out value);
                 break;
         }
 
