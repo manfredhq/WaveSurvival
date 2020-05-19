@@ -12,10 +12,6 @@ public class MobSpawnerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var spawnPoint in spawnPoints)
-        {
-            spawnPoint.mobPrefabs.Add(mobPrefabs[0]);
-        }
     }
 
     // Update is called once per frame
@@ -43,7 +39,9 @@ public class MobSpawnerManager : MonoBehaviour
         }
         foreach (var spawnPoint in currentWaveSpawnpoints)
         {
-            StartCoroutine(spawnPoint.SpawnEnemies(3, mobPrefabs[Random.Range(0, mobPrefabs.Count)], 2));
+            var temp = Random.Range(0, Waves[waveIndex].mobsPrefabs.Count);
+            spawnPoint.mobPrefabs.Add(Waves[waveIndex].mobsPrefabs[temp]);
+            StartCoroutine(spawnPoint.SpawnEnemies(3, 2));
         }
         waveIndex++;
     }
@@ -54,4 +52,5 @@ public class MobSpawnerManager : MonoBehaviour
 public class Wave
 {
     public int numberSpawn;
+    public List<GameObject> mobsPrefabs = new List<GameObject>();
 }

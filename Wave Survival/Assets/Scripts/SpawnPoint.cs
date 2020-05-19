@@ -19,12 +19,12 @@ public class SpawnPoint : MonoBehaviour
 
     }
 
-    public IEnumerator SpawnEnemies(int number, GameObject enemy, int enemyBySecond = 1)
+    public IEnumerator SpawnEnemies(int number, int enemyBySecond = 1)
     {
         while (number > 0)
         {
             Vector3 offset = new Vector3(Random.Range(-rangeToSpawn, rangeToSpawn), 0, Random.Range(-rangeToSpawn, rangeToSpawn));
-            var temp = Instantiate(enemy, transform.position + offset, Quaternion.identity);
+            var temp = Instantiate(mobPrefabs[0], transform.position + offset, Quaternion.identity);
             temp.GetComponent<Enemy>().baseTarget = GameManager.instance.playerBase;
             GameManager.instance.enemies.Add(temp);
             number--;
