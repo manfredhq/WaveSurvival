@@ -2083,6 +2083,17 @@ MonoBehaviour:
   - {fileID: 1826385862}
   - {fileID: 535119631}
   - {fileID: 1383603702}
+  Waves:
+  - numberSpawn: 2
+  - numberSpawn: 2
+  - numberSpawn: 2
+  - numberSpawn: 2
+  - numberSpawn: 2
+  - numberSpawn: 2
+  - numberSpawn: 2
+  - numberSpawn: 2
+  - numberSpawn: 2
+  - numberSpawn: 2
 --- !u!1001 &622837560
 PrefabInstance:
   m_ObjectHideFlags: 0

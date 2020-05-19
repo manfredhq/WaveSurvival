@@ -89,10 +89,10 @@ public class DialogManager : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < dialogs[dialogIndex - 1].answersKeys.Count; i++)
+            /*for (int i = 0; i < dialogs[dialogIndex - 1].answersKeys.Count; i++)
             {
                 answerText[i].gameObject.GetComponentInParent<Button>().gameObject.SetActive(false);
-            }
+            }*/
             AnswerPanel.SetActive(false);
         }
         dialogText.Refresh(dialogs[dialogIndex].isQuest);
