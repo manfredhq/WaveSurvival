@@ -55,6 +55,16 @@ public class GameManager : MonoBehaviour
         Night
     }
 
+    public enum Civilisation
+    {
+        Human,
+        Zorg,
+        Blastbolst,
+        Nigran
+    }
+
+    public Civilisation currentCivilisaton;
+
     public static GameManager instance;
 
     //to handle the singleton
@@ -69,8 +79,16 @@ public class GameManager : MonoBehaviour
 
     }
     // Start is called before the first frame update
+
+    public static T RandomEnumValue<T>()
+    {
+        var values = Civilisation.GetValues(typeof(T));
+        int random = Random.Range(0, values.Length);
+        return (T)values.GetValue(random);
+    }
     void Start()
     {
+        currentCivilisaton = RandomEnumValue<Civilisation>();
         waveCounter.text = spawnerManager.waveIndex.ToString() + "/" + spawnerManager.maxWaveIndex.ToString();
         currentPop = maxPop;
         playerGO = Instantiate(player, playerBase.transform.position + Vector3.back, Quaternion.identity);
