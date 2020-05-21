@@ -6,15 +6,11 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
+    public TMP_Text waveCounter;
 
     public NavMeshSurface surface;
     public List<GameObject> enemies = new List<GameObject>();
     public List<GameObject> buildings = new List<GameObject>();
-    public TMP_Text goldText;
-    public TMP_Text popText;
-    public TMP_Text stoneText;
-    public TMP_Text woodText;
-    public TMP_Text foodText;
     public GameObject player;
     public GameObject playerBase;
     public Light sun;
@@ -32,6 +28,13 @@ public class GameManager : MonoBehaviour
         Stone,
         Pop
     }
+
+    public TMP_Text goldText;
+    public TMP_Text popText;
+    public TMP_Text stoneText;
+    public TMP_Text woodText;
+    public TMP_Text foodText;
+
     private int gold = 100;
     private int food = 100;
     private int wood = 100;
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waveCounter.text = spawnerManager.waveIndex.ToString() + "/" + spawnerManager.maxWaveIndex.ToString();
         currentPop = maxPop;
         playerGO = Instantiate(player, playerBase.transform.position + Vector3.back, Quaternion.identity);
         playerGroundPosition = new Vector3(playerGO.transform.position.x, 0, playerGO.transform.position.z);
@@ -119,6 +123,7 @@ public class GameManager : MonoBehaviour
     public void NightStarting()
     {
         spawnerManager.SpawnMobs();
+        waveCounter.text = spawnerManager.waveIndex.ToString() + "/" + spawnerManager.maxWaveIndex.ToString();
         sun.color = nightSunColor;
         currentTime = Time.Night;
     }

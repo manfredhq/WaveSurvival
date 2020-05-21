@@ -8,7 +8,9 @@ public class MobSpawnerManager : MonoBehaviour
     public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     public List<Wave> Waves = new List<Wave>();
     private List<SpawnPoint> currentWaveSpawnpoints = new List<SpawnPoint>();
-    private int waveIndex = 0;
+    [HideInInspector]
+    public int waveIndex = 0;
+    public int maxWaveIndex = 10;
     // Start is called before the first frame update
     void Start()
     {
